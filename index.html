@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Doces da Nana • Cardápio Digital (Exemplo)</title>
+<meta name="description" content="Exemplo de cardápio digital com pedido pelo WhatsApp">
+<style>
+:root{--rosa:#e85d8a;--rosa2:#fde4ec;--choc:#5a3221;--bg:#fff8f3}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--choc)}
+.demo{background:#333;color:#fff;text-align:center;font-size:12px;padding:6px}
+header{background:linear-gradient(135deg,#f7a1bd,#e85d8a);color:#fff;text-align:center;padding:28px 16px 22px;border-radius:0 0 28px 28px}
+header .logo{font-size:52px}header h1{margin:6px 0 2px;font-size:30px;font-family:Georgia,serif}
+header p{margin:4px 0;opacity:.95}.badge{display:inline-block;background:#fff3;padding:4px 12px;border-radius:20px;font-size:13px;margin-top:6px}
+.btns{display:flex;gap:8px;justify-content:center;margin-top:14px}.btns a{background:#fff;color:var(--rosa);text-decoration:none;padding:8px 14px;border-radius:20px;font-weight:600;font-size:14px}
+nav{position:sticky;top:0;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:12px;z-index:5}
+nav button{flex:none;border:2px solid var(--rosa);background:#fff;color:var(--rosa);padding:8px 14px;border-radius:20px;font-weight:600}
+nav button.on{background:var(--rosa);color:#fff}
+main{padding:0 12px 110px;max-width:720px;margin:auto}h2{font-family:Georgia,serif;margin:18px 4px 10px}
+.card{display:flex;gap:12px;background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 2px 8px #5a322114;align-items:center}
+.ico{font-size:38px;width:64px;height:64px;display:grid;place-items:center;background:var(--rosa2);border-radius:14px;flex:none}
+.info{flex:1}.info b{display:block}.info small{color:#8a6a5a}.price{color:var(--rosa);font-weight:700;margin-top:4px}
+.qty{display:flex;align-items:center;gap:6px}.qty button{width:32px;height:32px;border-radius:50%;border:none;background:var(--rosa);color:#fff;font-size:18px}
+.qty span{min-width:18px;text-align:center;font-weight:700}
+#bar{position:fixed;left:12px;right:12px;bottom:12px;background:var(--choc);color:#fff;border:none;border-radius:16px;padding:16px;font-size:16px;font-weight:700;display:none;max-width:696px;margin:auto}
+#drawer{position:fixed;inset:0;background:#0006;display:none;z-index:10}#drawer .p{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:22px 22px 0 0;padding:18px;max-height:90vh;overflow:auto;max-width:720px;margin:auto}
+.li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #eee}
+label{display:block;margin-top:10px;font-size:14px;font-weight:600}input,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;font:inherit;margin-top:4px}
+.opt{display:flex;gap:8px;margin-top:6px}.opt label{flex:1;border:2px solid var(--rosa2);border-radius:10px;padding:10px;margin:0;text-align:center}
+.wa{width:100%;background:#25d366;color:#fff;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;margin-top:14px}
+.x{float:right;border:none;background:none;font-size:24px}
+footer{text-align:center;font-size:13px;padding:20px;color:#8a6a5a}
+</style></head><body>
+<div class="demo">🔎 Exemplo / Demonstração — itens e preços fictícios</div>
+<header><div class="logo">🧁</div><h1>Doces da Nana</h1><p>Doces artesanais feitos com carinho</p>
+<span class="badge">🕘 Ter a Sáb • 9h às 19h &nbsp;|&nbsp; Dom • 9h às 13h</span>
+<div class="btns"><a href="https://maps.google.com/?q=Ilh%C3%A9us+BA" target="_blank">📍 Localização</a><a href="https://instagram.com/" target="_blank">📸 Instagram</a></div></header>
+<nav id="tabs"></nav><main id="menu"></main>
+<button id="bar" onclick="openCart()"></button>
+<div id="drawer" onclick="if(event.target===this)closeCart()"><div class="p">
+<button class="x" onclick="closeCart()">×</button><h2 style="margin-top:0">Seu pedido</h2><div id="items"></div>
+<div class="li" style="font-weight:700;border:none"><span>Total</span><span id="total"></span></div>
+<label>Seu nome<input id="nome" placeholder="Ex.: Maria"></label>
+<label>Como prefere receber?</label><div class="opt"><label><input type="radio" name="tipo" value="Entrega" checked> 🛵 Entrega</label><label><input type="radio" name="tipo" value="Retirada"> 🏪 Retirada</label></div>
+<label id="endL">Endereço<textarea id="end" rows="2" placeholder="Rua, número, bairro"></textarea></label>
+<label>Observação<input id="obs" placeholder="Opcional"></label>
+<button class="wa" onclick="finish()">Finalizar pedido pelo WhatsApp</button></div></div>
+<footer>Site criado por Sóstenes Silva • (73) 98102-4409<br><small>Página de demonstração</small></footer>
+<script>
+const WA="5573981024409";
+const M={"Brigadeiros":[["🍫","Brigadeiro tradicional","Unidade, chocolate belga",3.5],["🥥","Beijinho","Unidade, coco fresco",3.5],["🍓","Brigadeiro de morango","Unidade",4],["🥜","Brigadeiro de paçoca","Unidade",4]],
+"Bolos de pote":[["🍰","Bolo de pote Ninho com morango","250 ml",14],["🍫","Bolo de pote prestígio","250 ml",13],["🍋","Bolo de pote limão","250 ml",12]],
+"Tortas":[["🥧","Torta de limão","Fatia",10],["🍓","Torta de morango","Fatia",12],["🎂","Torta inteira (encomenda)","Serve 15 pessoas",90]],
+"Docinhos p/ festa":[["🎉","Cento de docinhos sortidos","100 unidades",95],["🍬","Cento de brigadeiros","100 unidades",85],["💝","Caixa presente 12 doces","Embalagem especial",42]],
+"Bebidas":[["🥤","Refrigerante lata","350 ml",6],["🧃","Suco natural","300 ml",8],["☕","Café expresso","",5]]};
+const cart={},items={};let id=0;const R=v=>"R$ "+v.toFixed(2).replace(".",",");
+const tabs=document.getElementById("tabs"),menu=document.getElementById("menu");
+Object.entries(M).forEach(([c,l],i)=>{const sid="c"+i;tabs.innerHTML+=`<button data-s="${sid}" class="${i?"":"on"}" onclick="go('${sid}')">${c}</button>`;
+let h=`<h2 id="${sid}">${c}</h2>`;l.forEach(([e,n,d,p])=>{const k=id++;items[k]={n,p};h+=`<div class="card"><div class="ico">${e}</div><div class="info"><b>${n}</b><small>${d}</small><div class="price">${R(p)}</div></div><div class="qty"><button onclick="chg(${k},-1)">−</button><span id="q${k}">0</span><button onclick="chg(${k},1)">+</button></div></div>`});menu.innerHTML+=h});
+function go(s){document.getElementById(s).scrollIntoView({behavior:"smooth"});document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.s===s))}
+function chg(k,d){cart[k]=Math.max(0,(cart[k]||0)+d);if(!cart[k])delete cart[k];render()}
+function tot(){return Object.entries(cart).reduce((s,[k,q])=>s+items[k].p*q,0)}
+function render(){Object.keys(items).forEach(k=>document.getElementById("q"+k).textContent=cart[k]||0);const n=Object.values(cart).reduce((a,b)=>a+b,0);const bar=document.getElementById("bar");bar.style.display=n?"block":"none";bar.textContent=`🛒 Ver pedido (${n}) • ${R(tot())}`;
+document.getElementById("items").innerHTML=Object.entries(cart).map(([k,q])=>`<div class="li"><span>${q}x ${items[k].n}</span><span>${R(items[k].p*q)}</span></div>`).join("")||"<p>Carrinho vazio</p>";document.getElementById("total").textContent=R(tot());if(!n)closeCart()}
+function openCart(){document.getElementById("drawer").style.display="block"}function closeCart(){document.getElementById("drawer").style.display="none"}
+document.querySelectorAll("input[name=tipo]").forEach(r=>r.onchange=()=>document.getElementById("endL").style.display=r.value==="Entrega"&&r.checked?"block":"none");
+function buildUrl(){const t=document.querySelector("input[name=tipo]:checked").value,nome=document.getElementById("nome").value.trim(),end=document.getElementById("end").value.trim(),obs=document.getElementById("obs").value.trim();
+let m="Olá! Gostaria de fazer um pedido:\n\n"+Object.entries(cart).map(([k,q])=>`• ${q}x ${items[k].n} — ${R(items[k].p*q)}`).join("\n")+`\n\n*Total: ${R(tot())}*\n\nNome: ${nome}\n${t==="Entrega"?"Entrega no endereço: "+end:"Vou retirar no local"}`+(obs?"\nObs.: "+obs:"");
+return "https://wa.me/"+WA+"?text="+encodeURIComponent(m)}
+function finish(){if(!Object.keys(cart).length)return;if(!document.getElementById("nome").value.trim())return alert("Informe seu nome");if(document.querySelector("input[name=tipo]:checked").value==="Entrega"&&!document.getElementById("end").value.trim())return alert("Informe o endereço");window.open(buildUrl(),"_blank")}
+</script></body></html>
