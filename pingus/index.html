@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pingu's Gelateria e Cafeteria • Cardápio Digital (Demonstração)</title>
+<meta name="description" content="Exemplo de cardápio digital com pedido pelo WhatsApp">
+<style>
+:root{--rosa:#1f4fd8;--rosa2:#ffe3ec;--choc:#14204a;--bg:#f3f7ff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--choc)}
+.demo{background:#e63946;color:#fff;text-align:center;font-size:12px;padding:6px;font-weight:600}
+header{background:linear-gradient(160deg,#1f4fd8 0%,#2f6bff 60%,#5b8cff 100%);color:#fff;border-bottom:6px solid #ffb703;text-align:center;padding:20px 16px 22px;border-radius:0 0 30px 30px}
+header svg{width:150px;height:150px}header h1{margin:4px 0 2px;font-size:30px;font-family:'Arial Black',Impact,sans-serif;color:#ffd166;text-shadow:3px 3px 0 #e63946}
+header p{margin:4px 0}.badge{display:inline-block;background:#fff3;padding:4px 12px;border-radius:20px;font-size:13px;margin:6px 3px 0}
+.pb{display:inline-block;background:#ffd166;color:#14204a;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:700;margin-top:8px}
+.btns{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}.btns a{background:#fff;color:#1f4fd8;text-decoration:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:14px}
+nav{position:sticky;top:0;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:12px;z-index:5}
+nav button{flex:none;border:2px solid var(--rosa);background:#fff;color:var(--rosa);padding:8px 14px;border-radius:20px;font-weight:600}
+nav button.on{background:var(--rosa);color:#fff}
+main{padding:0 12px 110px;max-width:720px;margin:auto}h2{font-family:'Arial Black',sans-serif;color:#e63946;margin:18px 4px 10px}
+.card{display:flex;gap:12px;background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 2px 8px #1f4fd81a;align-items:center}
+.ico{font-size:38px;width:64px;height:64px;display:grid;place-items:center;background:var(--rosa2);border-radius:14px;flex:none}
+.info{flex:1}.info b{display:block}.info small{color:#5a6690}.price{color:#e63946;font-weight:700;margin-top:4px}
+.qty{display:flex;align-items:center;gap:6px}.qty button{width:32px;height:32px;border-radius:50%;border:none;background:var(--rosa);color:#fff;font-size:18px}
+.qty span{min-width:18px;text-align:center;font-weight:700}
+#bar{position:fixed;left:12px;right:12px;bottom:12px;background:#25d366;color:#fff;border:none;border-radius:16px;padding:16px;font-size:16px;font-weight:700;display:none;max-width:696px;margin:auto}
+#drawer{position:fixed;inset:0;background:#0006;display:none;z-index:10}#drawer .p{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:22px 22px 0 0;padding:18px;max-height:90vh;overflow:auto;max-width:720px;margin:auto}
+.li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #eee}
+label{display:block;margin-top:10px;font-size:14px;font-weight:600}input,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;font:inherit;margin-top:4px}
+.opt{display:flex;gap:8px;margin-top:6px}.opt label{flex:1;border:2px solid var(--rosa2);border-radius:10px;padding:10px;margin:0;text-align:center}
+.wa{width:100%;background:#25d366;color:#fff;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;margin-top:14px}
+.note{font-size:12px;color:#8a8a8a;margin-top:6px;text-align:center}.x{float:right;border:none;background:none;font-size:24px}
+footer{text-align:center;font-size:13px;padding:20px;color:#5a6690}footer a{color:#1f4fd8}
+</style></head><body><div class="demo">🔎 Site de demonstração — preços e itens ilustrativos</div>
+<header><svg viewBox="0 0 200 200" aria-label="Pinguim">
+<circle cx="100" cy="100" r="92" fill="#ffd166"/>
+<ellipse cx="100" cy="118" rx="52" ry="62" fill="#14204a"/>
+<ellipse cx="100" cy="128" rx="36" ry="48" fill="#fff"/>
+<circle cx="100" cy="72" r="40" fill="#14204a"/>
+<ellipse cx="100" cy="80" rx="28" ry="24" fill="#fff"/>
+<circle cx="89" cy="74" r="6" fill="#14204a"/><circle cx="111" cy="74" r="6" fill="#14204a"/>
+<circle cx="91" cy="72" r="2" fill="#fff"/><circle cx="113" cy="72" r="2" fill="#fff"/>
+<polygon points="92,84 108,84 100,94" fill="#ff9f1c"/>
+<circle cx="80" cy="88" r="5" fill="#ff8fab"/><circle cx="120" cy="88" r="5" fill="#ff8fab"/>
+<path d="M78 40 Q100 18 122 40 Z" fill="#e63946"/><circle cx="100" cy="22" r="6" fill="#fff"/>
+<g transform="rotate(-20 52 120)"><polygon points="44,120 60,120 52,150" fill="#e9a35b"/><circle cx="52" cy="112" r="11" fill="#ff8fab"/><circle cx="52" cy="100" r="9" fill="#fff"/><circle cx="55" cy="93" r="3" fill="#e63946"/></g>
+<rect x="136" y="116" width="26" height="28" rx="4" fill="#fff" stroke="#e63946" stroke-width="3"/><path d="M162 122 q10 8 0 16" stroke="#e63946" stroke-width="3" fill="none"/>
+<path d="M144 110 q4 -6 0 -10 M152 110 q4 -6 0 -10" stroke="#fff" stroke-width="2" fill="none"/>
+<ellipse cx="84" cy="180" rx="14" ry="6" fill="#ff9f1c"/><ellipse cx="116" cy="180" rx="14" ry="6" fill="#ff9f1c"/>
+</svg><h1>Pingu's</h1><p><b>Gelateria e Cafeteria</b></p><p>O sabor perfeito em qualquer temperatura! 🍦☕️</p>
+<p style="font-size:14px;opacity:.95">Sorvetes artesanais com sabores incríveis &amp; Cafés com grãos moídos na hora</p>
+<span class="badge">🕘 08:30 às 16h (exemplo)</span><span class="badge">📍 Pontal • em frente ao Aeroporto</span><br>
+<span class="pb">Preços ilustrativos – demonstração</span>
+<div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Rua%20Benjamin%20Constant%2C%20335%2C%20Pontal%2C%20Ilh%C3%A9us%20-%20BA" target="_blank">📍 Como chegar</a><a href="https://instagram.com/pingus_ilheus" target="_blank">📸 @pingus_ilheus</a></div></header>
+<nav id="tabs"></nav><main id="menu"></main>
+<button id="bar" onclick="openCart()"></button>
+<div id="drawer" onclick="if(event.target===this)closeCart()"><div class="p">
+<button class="x" onclick="closeCart()">×</button><h2 style="margin-top:0">Seu pedido</h2><div id="items"></div>
+<div class="li" style="font-weight:700;border:none"><span>Total</span><span id="total"></span></div>
+<label>Seu nome<input id="nome" placeholder="Ex.: Maria"></label>
+<label>Como prefere receber?</label><div class="opt"><label><input type="radio" name="tipo" value="Entrega" checked> 🛵 Entrega</label><label><input type="radio" name="tipo" value="Retirada"> 🏪 Retirada</label></div>
+<label id="endL">Endereço<textarea id="end" rows="2" placeholder="Rua, número, bairro"></textarea></label>
+<label>Observação<input id="obs" placeholder="Sabores, acompanhamentos..."></label>
+<button class="wa" onclick="finish()">Pedir pelo WhatsApp</button>
+<p class="note">Demonstração: o número de WhatsApp é provisório e será trocado pelo da Pingu's.</p></div></div>
+<footer>Rua Benjamin Constant, 335 – Pontal, Ilhéus-BA<br>(em frente ao Aeroporto Jorge Amado)<br><br>Site de demonstração criado por IA Connect – Sóstenes Silva • <a href="https://tinyurl.com/iaconnect-site">tinyurl.com/iaconnect-site</a></footer>
+<script>
+const WA="5573982035208";
+const M={"Sorvetes artesanais":[["🥥","Sorvete no coco ✨ Novidade","Sorvete artesanal servido dentro do coco",22],["🍨","Copo 1 bola","Escolha seu sabor artesanal",9],["🍨","Copo 2 bolas","Combine dois sabores",15],["🍦","Casquinha","1 bola na casquinha crocante",8],["🍫","Sundae","2 bolas, calda, chantilly e farofa",19],["⚖️","Sorvete a quilo","Monte o seu (preço por 100 g)",8.5]],
+"Açaí":[["🍇","Açaí 300 ml","Com 2 acompanhamentos",16],["🍇","Açaí 500 ml","Com 3 acompanhamentos",22],["🍓","Açaí especial 700 ml","Morango, leite ninho, banana, granola",29]],
+"Cafés":[["☕","Espresso","Grãos moídos na hora",6],["☕","Espresso duplo","",9],["🥛","Cappuccino","Espresso, leite vaporizado e cacau",12],["🍮","Latte caramelo","Espresso, leite e caramelo",14],["🧊","Café gelado","Espresso, leite e gelo",13],["🍦","Affogato","Espresso sobre sorvete de creme",15]],
+"Bebidas & Doces":[["🥤","Milkshake 400 ml","Creme, chocolate ou morango",18],["🧃","Suco natural","300 ml",9],["💧","Água mineral","500 ml",4],["🍰","Fatia de bolo","Sabor do dia",10],["🥐","Pão de queijo","Porção com 4",8],["🍪","Cookie","Gotas de chocolate",7]]};
+const cart={},items={};let id=0;const R=v=>"R$ "+v.toFixed(2).replace(".",",");
+const tabs=document.getElementById("tabs"),menu=document.getElementById("menu");
+Object.entries(M).forEach(([c,l],i)=>{const sid="c"+i;tabs.innerHTML+=`<button data-s="${sid}" class="${i?"":"on"}" onclick="go('${sid}')">${c}</button>`;
+let h=`<h2 id="${sid}">${c}</h2>`;l.forEach(([e,n,d,p])=>{const k=id++;items[k]={n,p};h+=`<div class="card"><div class="ico">${e}</div><div class="info"><b>${n}</b><small>${d}</small><div class="price">${R(p)}</div></div><div class="qty"><button onclick="chg(${k},-1)">−</button><span id="q${k}">0</span><button onclick="chg(${k},1)">+</button></div></div>`});menu.innerHTML+=h});
+function go(s){document.getElementById(s).scrollIntoView({behavior:"smooth"});document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.s===s))}
+function chg(k,d){cart[k]=Math.max(0,(cart[k]||0)+d);if(!cart[k])delete cart[k];render()}
+function tot(){return Object.entries(cart).reduce((s,[k,q])=>s+items[k].p*q,0)}
+function render(){Object.keys(items).forEach(k=>document.getElementById("q"+k).textContent=cart[k]||0);const n=Object.values(cart).reduce((a,b)=>a+b,0);const bar=document.getElementById("bar");bar.style.display=n?"block":"none";bar.textContent=`🛒 Ver pedido (${n}) • ${R(tot())}`;
+document.getElementById("items").innerHTML=Object.entries(cart).map(([k,q])=>`<div class="li"><span>${q}x ${items[k].n}</span><span>${R(items[k].p*q)}</span></div>`).join("")||"<p>Carrinho vazio</p>";document.getElementById("total").textContent=R(tot());if(!n)closeCart()}
+function openCart(){document.getElementById("drawer").style.display="block"}function closeCart(){document.getElementById("drawer").style.display="none"}
+document.querySelectorAll("input[name=tipo]").forEach(r=>r.onchange=()=>document.getElementById("endL").style.display=r.value==="Entrega"&&r.checked?"block":"none");
+function buildUrl(){const t=document.querySelector("input[name=tipo]:checked").value,nome=document.getElementById("nome").value.trim(),end=document.getElementById("end").value.trim(),obs=document.getElementById("obs").value.trim();
+let m="Olá! Gostaria de fazer um pedido:\n\n"+Object.entries(cart).map(([k,q])=>`• ${q}x ${items[k].n} — ${R(items[k].p*q)}`).join("\n")+`\n\n*Total: ${R(tot())}*\n\nNome: ${nome}\n${t==="Entrega"?"Entrega no endereço: "+end:"Vou retirar no local"}`+(obs?"\nObs.: "+obs:"");
+return "https://wa.me/"+WA+"?text="+encodeURIComponent(m)}
+function finish(){if(!Object.keys(cart).length)return;if(!document.getElementById("nome").value.trim())return alert("Informe seu nome");if(document.querySelector("input[name=tipo]:checked").value==="Entrega"&&!document.getElementById("end").value.trim())return alert("Informe o endereço");window.open(buildUrl(),"_blank")}
+</script></body></html>
