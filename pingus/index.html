@@ -27,8 +27,13 @@ label{display:block;margin-top:10px;font-size:14px;font-weight:600}input,textare
 .wa{width:100%;background:#25d366;color:#fff;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;margin-top:14px}
 .note{font-size:12px;color:#8a8a8a;margin-top:6px;text-align:center}.x{float:right;border:none;background:none;font-size:24px}
 footer{text-align:center;font-size:13px;padding:20px;color:#5a6690}footer a{color:#1f4fd8}
-</style></head><body><div class="demo">🔎 Site de demonstração — preços e itens ilustrativos</div>
-<header><svg viewBox="0 0 200 200" aria-label="Pinguim">
+.lang{position:absolute;top:34px;right:10px;display:flex;gap:4px;z-index:6}.lang button{border:2px solid #fff;background:#fff3;border-radius:12px;font-size:20px;padding:2px 6px}.lang button.on{background:#fff}
+header{position:relative}.mesa{background:#fff;border-radius:16px;padding:12px;margin:12px 0;box-shadow:0 2px 8px #1f4fd81a}.mesa input{font-size:18px;font-weight:700}
+.ex{display:inline-block;background:#fff3cd;color:#8a6d00;font-size:11px;padding:1px 6px;border-radius:8px;margin-left:4px}.kg{color:#8a8a8a;font-style:italic}
+footer{padding-bottom:100px}
+</style></head><body><div class="demo" data-t="demo"></div>
+<div class="lang"><button id="lpt" onclick="setL('pt')" aria-label="Português">🇧🇷</button><button id="len" onclick="setL('en')" aria-label="English">🇺🇸</button></div>
+<header><header><svg viewBox="0 0 200 200" aria-label="Pinguim">
 <circle cx="100" cy="100" r="92" fill="#ffd166"/>
 <ellipse cx="100" cy="118" rx="52" ry="62" fill="#14204a"/>
 <ellipse cx="100" cy="128" rx="36" ry="48" fill="#fff"/>
@@ -42,43 +47,49 @@ footer{text-align:center;font-size:13px;padding:20px;color:#5a6690}footer a{colo
 <g transform="rotate(-20 52 120)"><polygon points="44,120 60,120 52,150" fill="#e9a35b"/><circle cx="52" cy="112" r="11" fill="#ff8fab"/><circle cx="52" cy="100" r="9" fill="#fff"/><circle cx="55" cy="93" r="3" fill="#e63946"/></g>
 <rect x="136" y="116" width="26" height="28" rx="4" fill="#fff" stroke="#e63946" stroke-width="3"/><path d="M162 122 q10 8 0 16" stroke="#e63946" stroke-width="3" fill="none"/>
 <path d="M144 110 q4 -6 0 -10 M152 110 q4 -6 0 -10" stroke="#fff" stroke-width="2" fill="none"/>
-<ellipse cx="84" cy="180" rx="14" ry="6" fill="#ff9f1c"/><ellipse cx="116" cy="180" rx="14" ry="6" fill="#ff9f1c"/>
-</svg><h1>Pingu's</h1><p><b>Gelateria e Cafeteria</b></p><p>O sabor perfeito em qualquer temperatura! 🍦☕️</p>
-<p style="font-size:14px;opacity:.95">Sorvetes artesanais com sabores incríveis &amp; Cafés com grãos moídos na hora</p>
-<span class="badge">🕘 08:30 às 16h (exemplo)</span><span class="badge">📍 Pontal • em frente ao Aeroporto</span><br>
-<span class="pb">Preços ilustrativos – demonstração</span>
-<div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Rua%20Benjamin%20Constant%2C%20335%2C%20Pontal%2C%20Ilh%C3%A9us%20-%20BA" target="_blank">📍 Como chegar</a><a href="https://instagram.com/pingus_ilheus" target="_blank">📸 @pingus_ilheus</a></div></header>
-<nav id="tabs"></nav><main id="menu"></main>
+<ellipse cx="84" cy="180" rx="14" ry="6" fill="#ff9f1c"/><ellipse cx="116" cy="180" rx="14" ry="6" fill="#ff9f1c"/></svg><h1>Pingu's</h1><p><b data-t="sub"></b></p><p data-t="slogan"></p>
+<p style="font-size:14px;opacity:.95" data-t="desc"></p>
+<span class="badge" data-t="hours"></span><span class="badge" data-t="loc"></span><br>
+<div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Rua%20Benjamin%20Constant%2C%20335%2C%20Pontal%2C%20Ilh%C3%A9us%20-%20BA" target="_blank" data-t="map"></a><a href="https://instagram.com/pingus_ilheus" target="_blank">📸 @pingus_ilheus</a></div></header>
+<nav id="tabs"></nav><main><div class="mesa"><label><span data-t="mesaL"></span> *<input id="mesa" inputmode="numeric" placeholder="Ex.: 5" oninput="render()"></label></div><div id="menu"></div></main>
 <button id="bar" onclick="openCart()"></button>
 <div id="drawer" onclick="if(event.target===this)closeCart()"><div class="p">
-<button class="x" onclick="closeCart()">×</button><h2 style="margin-top:0">Seu pedido</h2><div id="items"></div>
-<div class="li" style="font-weight:700;border:none"><span>Total</span><span id="total"></span></div>
-<label>Seu nome<input id="nome" placeholder="Ex.: Maria"></label>
-<label>Como prefere receber?</label><div class="opt"><label><input type="radio" name="tipo" value="Entrega" checked> 🛵 Entrega</label><label><input type="radio" name="tipo" value="Retirada"> 🏪 Retirada</label></div>
-<label id="endL">Endereço<textarea id="end" rows="2" placeholder="Rua, número, bairro"></textarea></label>
-<label>Observação<input id="obs" placeholder="Sabores, acompanhamentos..."></label>
-<button class="wa" onclick="finish()">Pedir pelo WhatsApp</button>
-<p class="note">Demonstração: o número de WhatsApp é provisório e será trocado pelo da Pingu's.</p></div></div>
-<footer>Rua Benjamin Constant, 335 – Pontal, Ilhéus-BA<br>(em frente ao Aeroporto Jorge Amado)<br><br>Site de demonstração criado por IA Connect – Sóstenes Silva • <a href="https://tinyurl.com/iaconnect-site">tinyurl.com/iaconnect-site</a></footer>
+<button class="x" onclick="closeCart()">×</button><h2 style="margin-top:0" data-t="cartT"></h2><div id="items"></div>
+<div class="li" style="font-weight:700;border:none"><span data-t="total"></span><span id="total"></span></div>
+<label><span data-t="mesaL"></span> *<input id="mesa2" inputmode="numeric" placeholder="Ex.: 5" oninput="document.getElementById('mesa').value=this.value"></label>
+<label><span data-t="obsL"></span><input id="obs"></label>
+<button class="wa" onclick="finish()" data-t="send"></button>
+<p class="note" data-t="waNote"></p></div></div>
+<footer>Rua Benjamin Constant, 335 – Pontal, Ilhéus-BA<br><span data-t="airport"></span><br><br><span data-t="credit"></span> • <a href="https://tinyurl.com/iaconnect-site">tinyurl.com/iaconnect-site</a></footer>
 <script>
-const WA="5573982035208";
-const M={"Sorvetes artesanais":[["🥥","Sorvete no coco ✨ Novidade","Sorvete artesanal servido dentro do coco",22],["🍨","Copo 1 bola","Escolha seu sabor artesanal",9],["🍨","Copo 2 bolas","Combine dois sabores",15],["🍦","Casquinha","1 bola na casquinha crocante",8],["🍫","Sundae","2 bolas, calda, chantilly e farofa",19],["⚖️","Sorvete a quilo","Monte o seu (preço por 100 g)",8.5]],
-"Açaí":[["🍇","Açaí 300 ml","Com 2 acompanhamentos",16],["🍇","Açaí 500 ml","Com 3 acompanhamentos",22],["🍓","Açaí especial 700 ml","Morango, leite ninho, banana, granola",29]],
-"Cafés":[["☕","Espresso","Grãos moídos na hora",6],["☕","Espresso duplo","",9],["🥛","Cappuccino","Espresso, leite vaporizado e cacau",12],["🍮","Latte caramelo","Espresso, leite e caramelo",14],["🧊","Café gelado","Espresso, leite e gelo",13],["🍦","Affogato","Espresso sobre sorvete de creme",15]],
-"Bebidas & Doces":[["🥤","Milkshake 400 ml","Creme, chocolate ou morango",18],["🧃","Suco natural","300 ml",9],["💧","Água mineral","500 ml",4],["🍰","Fatia de bolo","Sabor do dia",10],["🥐","Pão de queijo","Porção com 4",8],["🍪","Cookie","Gotas de chocolate",7]]};
-const cart={},items={};let id=0;const R=v=>"R$ "+v.toFixed(2).replace(".",",");
-const tabs=document.getElementById("tabs"),menu=document.getElementById("menu");
-Object.entries(M).forEach(([c,l],i)=>{const sid="c"+i;tabs.innerHTML+=`<button data-s="${sid}" class="${i?"":"on"}" onclick="go('${sid}')">${c}</button>`;
-let h=`<h2 id="${sid}">${c}</h2>`;l.forEach(([e,n,d,p])=>{const k=id++;items[k]={n,p};h+=`<div class="card"><div class="ico">${e}</div><div class="info"><b>${n}</b><small>${d}</small><div class="price">${R(p)}</div></div><div class="qty"><button onclick="chg(${k},-1)">−</button><span id="q${k}">0</span><button onclick="chg(${k},1)">+</button></div></div>`});menu.innerHTML+=h});
+const WA="5573900000000"; // número de EXEMPLO
+const T={pt:{demo:"🔎 Site de demonstração",sub:"Gelateria e Cafeteria",slogan:"O sabor perfeito em qualquer temperatura! 🍦☕️",desc:"Sorvetes artesanais com sabores incríveis & Cafés com grãos moídos na hora",hours:"🕘 08:30 às 16h (exemplo)",loc:"📍 Pontal • em frente ao Aeroporto",map:"📍 Como chegar",mesaL:"Número da mesa",cartT:"Seu pedido",total:"Total",obsL:"Observação (sabores, etc.)",send:"Enviar pedido",waNote:"Demonstração: o número de WhatsApp é um exemplo e será trocado pelo da Pingu's.",airport:"(em frente ao Aeroporto Jorge Amado)",credit:"Site de demonstração criado por IA Connect – Sóstenes Silva",ex:"preço de exemplo",kg:"R$ --,-- /kg (a confirmar)",kgL:"valor do kg",view:"🛒 Ver pedido",empty:"Carrinho vazio",needMesa:"Informe o número da mesa",msg:"Olá! Pedido da *Mesa {m}*:",cats:["Picolés","Sorvete por quilo","Cafés"]},
+en:{demo:"🔎 Demo website",sub:"Gelato & Coffee Shop",slogan:"The perfect taste at any temperature! 🍦☕️",desc:"Handmade ice cream with amazing flavors & freshly ground coffee",hours:"🕘 8:30 am – 4 pm (example)",loc:"📍 Pontal • across from the Airport",map:"📍 Directions",mesaL:"Table number",cartT:"Your order",total:"Total",obsL:"Notes (flavors, etc.)",send:"Send order",waNote:"Demo: the WhatsApp number is an example and will be replaced with Pingu's own.",airport:"(across from Jorge Amado Airport)",credit:"Demo website by IA Connect – Sóstenes Silva",ex:"example price",kg:"R$ --,-- /kg (to be confirmed)",kgL:"price per kg",view:"🛒 View order",empty:"Cart is empty",needMesa:"Please enter your table number",msg:"Hello! Order from *Table {m}*:",cats:["Popsicles","Ice cream by weight","Coffee"]}};
+// [emoji, nome PT, nome EN, desc PT, desc EN, preço, exemplo?, kg?]
+const M=[[["🍓","Picolé de fruta","Fruit popsicle","Sabores de frutas","Fruit flavors",4.9],["🥛","Picolé de leite","Milk popsicle","Cremoso, à base de leite","Creamy, milk-based",5.8],["🍫","Picolé trufado","Truffle popsicle","Recheado e coberto","Filled and coated",8.6]],
+[["⚖️","Sorvete por quilo","Ice cream by weight","Monte o seu com os sabores artesanais","Build your own with handmade flavors",0,0,1]],
+[["☕","Espresso","Espresso","Grãos moídos na hora","Freshly ground beans",6,1],["🥛","Cappuccino","Cappuccino","Espresso, leite vaporizado e cacau","Espresso, steamed milk and cocoa",12,1],["🍮","Latte caramelo","Caramel latte","Espresso, leite e caramelo","Espresso, milk and caramel",14,1],["🧊","Café gelado","Iced coffee","Espresso, leite e gelo","Espresso, milk and ice",13,1],["🍦","Affogato","Affogato","Espresso sobre sorvete de creme","Espresso over vanilla ice cream",15,1]]];
+let L=localStorage.getItem("pl")||"pt";const cart={},items={};const R=v=>"R$ "+v.toFixed(2).replace(".",",");
+function draw(){const t=T[L];document.documentElement.lang=L==="pt"?"pt-BR":"en";document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t[e.dataset.t]);
+document.getElementById("lpt").classList.toggle("on",L==="pt");document.getElementById("len").classList.toggle("on",L==="en");
+let tb="",h="",k=0;M.forEach((l,i)=>{tb+=`<button data-s="c${i}" class="${i?"":"on"}" onclick="go('c${i}')">${t.cats[i]}</button>`;h+=`<h2 id="c${i}">${t.cats[i]}</h2>`;
+l.forEach(([e,np,ne,dp,de,p,ex,kg])=>{const id=k++;items[id]={np,ne,p};const n=L==="pt"?np:ne,d=L==="pt"?dp:de;
+h+=`<div class="card"><div class="ico">${e}</div><div class="info"><b>${n}</b><small>${d}</small><div class="price">${kg?`${t.kgL}: <span class="kg">${t.kg}</span>`:R(p)+(ex?`<span class="ex">${t.ex}</span>`:"")}</div></div>${kg?"":`<div class="qty"><button onclick="chg(${id},-1)" aria-label="-">−</button><span id="q${id}">0</span><button onclick="chg(${id},1)" aria-label="+">+</button></div>`}</div>`})});
+document.getElementById("tabs").innerHTML=tb;document.getElementById("menu").innerHTML=h;document.getElementById("obs").placeholder=L==="pt"?"Ex.: sem açúcar":"E.g.: no sugar";render()}
+function setL(l){L=l;localStorage.setItem("pl",l);draw()}
+const nm=k=>L==="pt"?items[k].np:items[k].ne;
 function go(s){document.getElementById(s).scrollIntoView({behavior:"smooth"});document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.s===s))}
 function chg(k,d){cart[k]=Math.max(0,(cart[k]||0)+d);if(!cart[k])delete cart[k];render()}
 function tot(){return Object.entries(cart).reduce((s,[k,q])=>s+items[k].p*q,0)}
-function render(){Object.keys(items).forEach(k=>document.getElementById("q"+k).textContent=cart[k]||0);const n=Object.values(cart).reduce((a,b)=>a+b,0);const bar=document.getElementById("bar");bar.style.display=n?"block":"none";bar.textContent=`🛒 Ver pedido (${n}) • ${R(tot())}`;
-document.getElementById("items").innerHTML=Object.entries(cart).map(([k,q])=>`<div class="li"><span>${q}x ${items[k].n}</span><span>${R(items[k].p*q)}</span></div>`).join("")||"<p>Carrinho vazio</p>";document.getElementById("total").textContent=R(tot());if(!n)closeCart()}
+function render(){const t=T[L];Object.keys(items).forEach(k=>{const q=document.getElementById("q"+k);if(q)q.textContent=cart[k]||0});const n=Object.values(cart).reduce((a,b)=>a+b,0);const bar=document.getElementById("bar");bar.style.display=n?"block":"none";
+const m=document.getElementById("mesa").value.trim();bar.textContent=`${t.view} (${n}) • ${R(tot())}`+(m?` • ${t.mesaL.split(" ").pop()==="mesa"?"Mesa":"Mesa"} ${m}`:"");if(L==="en"&&m)bar.textContent=`${t.view} (${n}) • ${R(tot())} • Table ${m}`;
+document.getElementById("mesa2").value=m;
+document.getElementById("items").innerHTML=Object.entries(cart).map(([k,q])=>`<div class="li"><span>${q}x ${nm(k)}</span><span>${R(items[k].p*q)}</span></div>`).join("")||`<p>${t.empty}</p>`;document.getElementById("total").textContent=R(tot());if(!n)closeCart()}
 function openCart(){document.getElementById("drawer").style.display="block"}function closeCart(){document.getElementById("drawer").style.display="none"}
-document.querySelectorAll("input[name=tipo]").forEach(r=>r.onchange=()=>document.getElementById("endL").style.display=r.value==="Entrega"&&r.checked?"block":"none");
-function buildUrl(){const t=document.querySelector("input[name=tipo]:checked").value,nome=document.getElementById("nome").value.trim(),end=document.getElementById("end").value.trim(),obs=document.getElementById("obs").value.trim();
-let m="Olá! Gostaria de fazer um pedido:\n\n"+Object.entries(cart).map(([k,q])=>`• ${q}x ${items[k].n} — ${R(items[k].p*q)}`).join("\n")+`\n\n*Total: ${R(tot())}*\n\nNome: ${nome}\n${t==="Entrega"?"Entrega no endereço: "+end:"Vou retirar no local"}`+(obs?"\nObs.: "+obs:"");
-return "https://wa.me/"+WA+"?text="+encodeURIComponent(m)}
-function finish(){if(!Object.keys(cart).length)return;if(!document.getElementById("nome").value.trim())return alert("Informe seu nome");if(document.querySelector("input[name=tipo]:checked").value==="Entrega"&&!document.getElementById("end").value.trim())return alert("Informe o endereço");window.open(buildUrl(),"_blank")}
+function buildUrl(){const t=T[L],m=document.getElementById("mesa").value.trim(),obs=document.getElementById("obs").value.trim();
+let s=t.msg.replace("{m}",m)+"\n\n"+Object.entries(cart).map(([k,q])=>`• ${q}x ${items[k].np} — ${R(items[k].p*q)}`).join("\n")+`\n\n*Total: ${R(tot())}*`+(obs?"\nObs.: "+obs:"");
+return "https://wa.me/"+WA+"?text="+encodeURIComponent(s)}
+function finish(){if(!Object.keys(cart).length)return;if(!document.getElementById("mesa").value.trim()){document.getElementById("mesa2").focus();return alert(T[L].needMesa)}window.open(buildUrl(),"_blank")}
+const qm=new URLSearchParams(location.search).get("mesa");if(qm)document.getElementById("mesa").value=qm.replace(/\D/g,"").slice(0,4);
+draw();
 </script></body></html>
