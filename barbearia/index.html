@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Barbearia Navalha de Ouro • Ilhéus (Exemplo)</title>
+<meta name="description" content="Exemplo de site para barbearia com agendamento pelo WhatsApp">
+<style>
+:root{--ouro:#d4af37;--ouro2:#f3d77a;--bg:#0d0d0d;--card:#181818;--txt:#eee}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt)}
+.demo{background:var(--ouro);color:#111;text-align:center;font-size:12px;font-weight:700;padding:6px}
+header{text-align:center;padding:40px 18px 34px;background:radial-gradient(circle at 50% 0,#3a2e0d 0,#0d0d0d 70%);border-bottom:1px solid #d4af3755}
+.logo{width:84px;height:84px;margin:auto;border:2px solid var(--ouro);border-radius:50%;display:grid;place-items:center;font-size:40px}
+h1{font-family:Georgia,serif;font-size:32px;margin:14px 0 4px;color:var(--ouro2);letter-spacing:1px}
+header p{opacity:.85;margin:4px 0}.cta{display:inline-block;margin-top:18px;background:linear-gradient(135deg,var(--ouro),var(--ouro2));color:#111;font-weight:800;padding:14px 26px;border-radius:30px;text-decoration:none}
+main{max-width:720px;margin:auto;padding:0 14px 40px}
+h2{font-family:Georgia,serif;color:var(--ouro);text-align:center;margin:34px 0 14px;font-size:24px}
+h2:after{content:"";display:block;width:50px;height:2px;background:var(--ouro);margin:8px auto 0}
+.serv{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid #2a2a2a;border-radius:14px;padding:14px;margin-bottom:10px}
+.serv b{display:block}.serv small{color:#aaa}.serv .p{color:var(--ouro2);font-weight:800;white-space:nowrap}
+.box{background:var(--card);border:1px solid #d4af3744;border-radius:16px;padding:16px}
+label{display:block;font-size:14px;color:#ccc;margin:10px 0 4px}
+select,input{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#0d0d0d;color:#fff;font-size:16px}
+.horas{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.horas button{padding:10px 0;border-radius:10px;border:1px solid #444;background:#0d0d0d;color:#ddd;font-size:14px}
+.horas button.on{background:var(--ouro);color:#111;border-color:var(--ouro);font-weight:700}
+.zap{width:100%;margin-top:16px;padding:16px;border:none;border-radius:14px;background:#25d366;color:#fff;font-weight:800;font-size:16px}
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.gal div{aspect-ratio:1;border-radius:14px;display:grid;place-items:center;font-size:44px;border:1px solid #d4af3733;position:relative}
+.gal span{position:absolute;bottom:8px;font-size:12px;color:#ddd}
+.dep{background:var(--card);border-left:3px solid var(--ouro);padding:12px 14px;border-radius:10px;margin-bottom:10px;font-size:15px}.dep b{color:var(--ouro2);font-size:13px}
+table{width:100%;border-collapse:collapse}td{padding:8px 4px;border-bottom:1px solid #2a2a2a}td:last-child{text-align:right;color:var(--ouro2)}
+footer{text-align:center;padding:24px;font-size:13px;color:#999;border-top:1px solid #222}
+</style></head><body>
+<div class="demo">⚠️ EXEMPLO / DEMONSTRAÇÃO — empresa fictícia</div>
+<header><div class="logo">💈</div><h1>Navalha de Ouro</h1><p>Barbearia • Ilhéus-BA</p><p style="color:var(--ouro2)">Estilo, respeito e acabamento de primeira.</p><a class="cta" href="#agendar">✂️ Agendar horário</a></header>
+<main>
+<h2>Serviços</h2><div id="servs"></div>
+<h2 id="agendar">Agende pelo WhatsApp</h2>
+<div class="box"><label>Serviço</label><select id="s"></select>
+<label>Seu nome</label><input id="n" placeholder="Ex.: João">
+<label>Dia</label><input type="date" id="d">
+<label>Horário</label><div class="horas" id="h"></div>
+<button class="zap" onclick="enviar()">📲 Enviar agendamento</button></div>
+<h2>Galeria</h2><div class="gal">
+<div style="background:linear-gradient(135deg,#2a2210,#0d0d0d)">💇‍♂️<span>Degradê navalhado</span></div>
+<div style="background:linear-gradient(135deg,#0d0d0d,#3a2e0d)">🧔<span>Barba modelada</span></div>
+<div style="background:linear-gradient(135deg,#3a2e0d,#111)">✂️<span>Corte social</span></div>
+<div style="background:linear-gradient(135deg,#111,#2a2210)">🪒<span>Toalha quente</span></div></div>
+<h2>O que dizem</h2>
+<div class="dep">“Melhor degradê de Ilhéus, atendimento nota 10!”<br><b>★★★★★ Rafael M.</b></div>
+<div class="dep">“Agendei pelo WhatsApp em 1 minuto, sem fila.”<br><b>★★★★★ Diego S.</b></div>
+<div class="dep">“Barba com toalha quente é outro nível.”<br><b>★★★★★ Lucas P.</b></div>
+<h2>Horários</h2><div class="box"><table>
+<tr><td>Segunda a Sexta</td><td>9h – 20h</td></tr><tr><td>Sábado</td><td>8h – 18h</td></tr><tr><td>Domingo</td><td>Fechado</td></tr></table></div>
+<h2>Localização</h2><div class="box" style="text-align:center">📍 Centro, Ilhéus-BA (endereço fictício)<br><br><a class="cta" style="margin:0" href="https://maps.google.com/?q=Centro+Ilheus+BA" target="_blank">Abrir no mapa</a></div>
+</main>
+<footer>Site criado por Sóstenes Silva • (73) 98102-4409</footer>
+<script>
+const S=[["Corte","Tesoura ou máquina",35],["Barba","Com toalha quente",25],["Combo Corte + Barba","O mais pedido",55],["Sobrancelha","Na navalha",10],["Pigmentação","Barba ou cabelo",30],["Pezinho","Acabamento",10],["Luzes / Platinado","Consultar tempo",90]];
+const f=v=>"R$ "+v.toFixed(2).replace(".",",");
+servs.innerHTML=S.map(x=>`<div class="serv"><div><b>${x[0]}</b><small>${x[1]}</small></div><div class="p">${f(x[2])}</div></div>`).join("");
+s.innerHTML=S.map((x,i)=>`<option value="${i}">${x[0]} — ${f(x[2])}</option>`).join("");
+let hr="";const H=["09:00","10:00","11:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"];
+h.innerHTML=H.map(x=>`<button type="button">${x}</button>`).join("");
+h.querySelectorAll("button").forEach(b=>b.onclick=()=>{h.querySelectorAll("button").forEach(o=>o.classList.remove("on"));b.classList.add("on");hr=b.textContent});
+d.valueAsDate=new Date();
+function enviar(){if(!d.value||!hr){alert("Escolha o dia e o horário 🙂");return}
+const x=S[s.value],dt=d.value.split("-").reverse().join("/");
+const m=`Olá! Quero agendar na Navalha de Ouro:%0A✂️ ${x[0]} (${f(x[2])})%0A📅 ${dt} às ${hr}%0A👤 ${n.value||"-"}`;
+location.href="https://wa.me/5573981024409?text="+m}
+</script></body></html>
