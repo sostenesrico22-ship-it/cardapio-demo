@@ -6,7 +6,7 @@
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--choc)}
 .demo{background:#e63946;color:#fff;text-align:center;font-size:12px;padding:6px;font-weight:600}
 header{background:linear-gradient(160deg,#1f4fd8 0%,#2f6bff 60%,#5b8cff 100%);color:#fff;border-bottom:6px solid #ffb703;text-align:center;padding:20px 16px 22px;border-radius:0 0 30px 30px}
-header svg{width:150px;height:150px}header h1{margin:4px 0 2px;font-size:30px;font-family:'Arial Black',Impact,sans-serif;color:#ffd166;text-shadow:3px 3px 0 #e63946}
+header .logo{display:block;margin:0 auto;width:160px;height:160px;object-fit:contain}header h1{margin:4px 0 2px;font-size:30px;font-family:'Arial Black',Impact,sans-serif;color:#ffd166;text-shadow:3px 3px 0 #e63946}
 header p{margin:4px 0}.badge{display:inline-block;background:#fff3;padding:4px 12px;border-radius:20px;font-size:13px;margin:6px 3px 0}
 .pb{display:inline-block;background:#ffd166;color:#14204a;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:700;margin-top:8px}
 .btns{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}.btns a{background:#fff;color:#1f4fd8;text-decoration:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:14px}
@@ -33,23 +33,10 @@ header{position:relative}.mesa{background:#fff;border-radius:16px;padding:12px;m
 footer{padding-bottom:100px}
 .cat{background:#fff;border-radius:16px;margin-bottom:10px;box-shadow:0 2px 8px #1f4fd81a;overflow:hidden}.cat summary{display:flex;justify-content:space-between;align-items:center;padding:14px;font-family:'Arial Black',sans-serif;color:#e63946;cursor:pointer;list-style:none}.cat summary::after{content:"▾";margin-left:8px}.cat[open] summary::after{content:"▴"}.cat summary small{font-family:system-ui;color:#14204a;font-weight:700;margin-left:auto}
 .cat .card{box-shadow:none;border-top:1px solid #eef;border-radius:0;margin:0;padding:10px 14px}.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{background:var(--rosa2);border-radius:14px;padding:4px 10px;font-size:13px}.counter{margin-top:10px;font-weight:700;color:#1f4fd8}
-</style></head><body><div class="demo" data-t="demo"></div>
+</style><link rel="icon" type="image/png" href="favicon.png">
+</head><body><div class="demo" data-t="demo"></div>
 <div class="lang"><button id="lpt" onclick="setL('pt')" aria-label="Português">🇧🇷</button><button id="len" onclick="setL('en')" aria-label="English">🇺🇸</button></div>
-<header><svg viewBox="0 0 200 200" aria-label="Pinguim">
-<circle cx="100" cy="100" r="92" fill="#ffd166"/>
-<ellipse cx="100" cy="118" rx="52" ry="62" fill="#14204a"/>
-<ellipse cx="100" cy="128" rx="36" ry="48" fill="#fff"/>
-<circle cx="100" cy="72" r="40" fill="#14204a"/>
-<ellipse cx="100" cy="80" rx="28" ry="24" fill="#fff"/>
-<circle cx="89" cy="74" r="6" fill="#14204a"/><circle cx="111" cy="74" r="6" fill="#14204a"/>
-<circle cx="91" cy="72" r="2" fill="#fff"/><circle cx="113" cy="72" r="2" fill="#fff"/>
-<polygon points="92,84 108,84 100,94" fill="#ff9f1c"/>
-<circle cx="80" cy="88" r="5" fill="#ff8fab"/><circle cx="120" cy="88" r="5" fill="#ff8fab"/>
-<path d="M78 40 Q100 18 122 40 Z" fill="#e63946"/><circle cx="100" cy="22" r="6" fill="#fff"/>
-<g transform="rotate(-20 52 120)"><polygon points="44,120 60,120 52,150" fill="#e9a35b"/><circle cx="52" cy="112" r="11" fill="#ff8fab"/><circle cx="52" cy="100" r="9" fill="#fff"/><circle cx="55" cy="93" r="3" fill="#e63946"/></g>
-<rect x="136" y="116" width="26" height="28" rx="4" fill="#fff" stroke="#e63946" stroke-width="3"/><path d="M162 122 q10 8 0 16" stroke="#e63946" stroke-width="3" fill="none"/>
-<path d="M144 110 q4 -6 0 -10 M152 110 q4 -6 0 -10" stroke="#fff" stroke-width="2" fill="none"/>
-<ellipse cx="84" cy="180" rx="14" ry="6" fill="#ff9f1c"/><ellipse cx="116" cy="180" rx="14" ry="6" fill="#ff9f1c"/></svg><h1>Pingu's</h1><p><b data-t="sub"></b></p><p data-t="slogan"></p>
+<header><img class="logo" src="logo.webp" alt="Pingu's Gelateria" width="160" height="160"><h1>Pingu's</h1><p><b data-t="sub"></b></p><p data-t="slogan"></p>
 <p style="font-size:14px;opacity:.95" data-t="desc"></p>
 <span class="badge" data-t="hours"></span><span class="badge" data-t="loc"></span><br>
 <div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Rua%20Benjamin%20Constant%2C%20335%2C%20Pontal%2C%20Ilh%C3%A9us%20-%20BA" target="_blank" data-t="map"></a><a href="https://instagram.com/pingus_ilheus" target="_blank">📸 @pingus_ilheus</a></div></header>
